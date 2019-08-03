@@ -43,7 +43,7 @@ public class LoginController {
 		logger.info("Login - doLogin start");
 
 		String ret = "login";
-		if(loginForm.getLoginId().equals("abc") && loginForm.getPassword().equals("aaa")) {
+		if(loginForm.getLoginId().equals("abc") && loginForm.getPassword().equals("zzz")) {
 			ret = "home";
 		}else {
 		logger.info("Login - doLogin stop");
