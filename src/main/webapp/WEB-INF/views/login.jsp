@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -15,8 +16,8 @@
 		}
 
 		function checkForm(){
-    		var user = document.getElementById("login");
-    		var pass = document.getElementById("password");
+    		var user = document.getElementById("login").value;;
+    		var pass = document.getElementById("password").value;;
 
     	      if(user.length === 0) {
     	          alert('ユーザ名が入力されていません！');
@@ -35,13 +36,14 @@
 
   <fieldset>
     <h1>Login</h1>
-    <form:form modelAttribute="loginForm" >
-		<div class="iconUser"></div>
-		<form:input path="loginId" id="login" placeholder="Username"/>
-		<div class="iconPassword"></div>
-		<form:input path="password" type="password" placeholder="Password"/>
-		<input type="submit" value="Enter"  onclick="checkForm();">
 
+    <form:form modelAttribute="loginForm" >
+
+			<div class="iconUser"></div>
+			<form:input path="loginId" id="login" placeholder="Username"/>
+			<div class="iconPassword"></div>
+			<form:input path="password" type="password" placeholder="Password"/>
+	<input type="submit" value="Enter"  onclick="checkForm();">
     </form:form>
   </fieldset>
 </body>
