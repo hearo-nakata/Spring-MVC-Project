@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,14 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.org.web.form.LoginForm;
+import jp.org.web.repository.LoginRepository;
+
+
 
 /**
  * Handles requests for the application home page.
  */
+
+//コントローラであることを記載するアノテーション
 @Controller
 public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+	@Autowired
+	private LoginRepository loginRepository;
 
 	@ModelAttribute
 	public LoginForm setLoginForm() {
@@ -28,8 +37,6 @@ public class LoginController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-
-
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -43,14 +50,23 @@ public class LoginController {
 		logger.info("Login - doLogin start");
 
 		String ret = "login";
-		if(loginForm.getLoginId().equals("abc") && loginForm.getPassword().equals("aaa")) {
-			ret = "home";
-		}else {
-		logger.info("Login - doLogin stop");
-		loginForm.setLoginId("");
-		loginForm.setPassword("");
-		}
-		return ret;
+
+
+		String loginResult = loginRepository.getUserMap(loginForm.getLoginId(), loginForm.getPassword());
+		        // login and password is blank when login fail
+		        if(loginResult != null) {
+		            ret = "home";
+		        } else {
+		            logger.info("Login NG, Back loin page");
+		            loginForm.setLoginId("");
+		            loginForm.setPassword("");
+		        }
+
+				logger.info("Login - doLogin stop");
+
+				return ret;
+
+
 	}
 
 }
