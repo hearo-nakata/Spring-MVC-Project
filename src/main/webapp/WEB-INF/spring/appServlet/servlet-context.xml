@@ -36,12 +36,8 @@
         <beans:property name="dataSource" ref="dataSource" />
     </beans:bean>
 
-<!--
     <beans:bean class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <beans:property name="mapperInterface" value="jp.org.web.repository.LoginRepository” />
+        <beans:property name="mapperInterface" value="jp.org.web.repository.LoginRepository" />
         <beans:property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </beans:bean>
-    -->
-
-
 </beans:beans>

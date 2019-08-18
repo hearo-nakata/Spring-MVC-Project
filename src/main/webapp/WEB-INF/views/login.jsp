@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -15,8 +16,8 @@
 		}
 
 		function checkForm(){
-    		var user = document.getElementById("login");
-    		var pass = document.getElementById("password");
+    		var user = document.getElementById("login").value;
+    		var pass = document.getElementById("password").value;
 
     	      if(user.length === 0) {
     	          alert('ユーザ名が入力されていません！');
