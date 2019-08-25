@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <html lang="en" >
 
 <head>
   <meta charset="UTF-8">
+
+    <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <title>Simple Form with Icons</title>
   <link rel="stylesheet" href="resources/css/style.css">
 
