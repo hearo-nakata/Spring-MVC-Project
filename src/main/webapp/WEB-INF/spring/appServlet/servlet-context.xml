@@ -27,9 +27,9 @@
 
 	    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <beans:property name="url" value="jdbc:mysql://127.0.0.1:3306/test_mysql" />
+        <beans:property name="url" value="jdbc:mysql://localhost:3306/test_mysql?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
         <beans:property name="username" value="root" />
-        <beans:property name="password" value="password" />
+        <beans:property name="password" value="A9h11107" />
     </beans:bean >
 
     <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
