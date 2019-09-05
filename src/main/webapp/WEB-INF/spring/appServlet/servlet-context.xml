@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
@@ -36,8 +38,7 @@
         <beans:property name="dataSource" ref="dataSource" />
     </beans:bean>
 
-    <beans:bean class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <beans:property name="mapperInterface" value="jp.org.web.repository.LoginRepository" />
-        <beans:property name="sqlSessionFactory" ref="sqlSessionFactory" />
-    </beans:bean>
+
+    <mybatis:scan base-package="jp.org.web.repository"/>
+
 </beans:beans>

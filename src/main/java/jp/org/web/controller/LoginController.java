@@ -55,7 +55,7 @@ public class LoginController {
 		String loginResult = loginRepository.getUserMap(loginForm.getLoginId(), loginForm.getPassword());
 		        // login and password is blank when login fail
 		        if(loginResult != null) {
-		            ret = "home";
+		            ret = "redirect:/01_list/list";
 		        } else {
 		            logger.info("Login NG, Back loin page");
 		            loginForm.setLoginId("");
@@ -65,8 +65,13 @@ public class LoginController {
 				logger.info("Login - doLogin stop");
 
 				return ret;
-
-
 	}
+
+	@RequestMapping(value = "/01_list/list", params="logout", method = RequestMethod.POST)
+    public String doLogout(Model model) {
+        logger.info("Do logout and transfer login screen");
+
+        return "redirect:/login";
+    }
 
 }
