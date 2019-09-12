@@ -66,7 +66,6 @@
 		                <td>${listRow.userLastName}</td>
 		                <td>${listRow.lesson1st}</td>
 		                <td>${listRow.lesson2nd}</td>
-		                <td>@mdo</td>
 		            </tr>
 			            </c:forEach>
 			        </tbody>
