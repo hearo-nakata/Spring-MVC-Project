@@ -20,16 +20,13 @@
 			var element = document.getElementById("login");
 			element.focus();
 		}
-
 		function checkForm(){
     		var user = document.getElementById("login").value;
     		var pass = document.getElementById("password").value;
-
     	      if(user.length === 0) {
     	          alert('ユーザ名が入力されていません！');
     	          return false;
     	      }
-
     	      if(pass.length === 0) {
     	          alert('パスワードが入力されていません！');
     	          return false;
