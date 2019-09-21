@@ -31,7 +31,7 @@ public class UpdateController {
 	private LessonListRepository repository;
 
 	@ModelAttribute
-	public LessonlistForm setLessonlistForm() {
+	public LessonlistForm setlessonlistForm() {
 		LessonlistForm lessonlistForm = new LessonlistForm();
 		return lessonlistForm;
 	}
@@ -45,7 +45,7 @@ public class UpdateController {
 		logger.info("userId -> " + id);
 
 		LessonlistForm lessonDataForm = repository.getLessonData(id);
-		model.addAttribute("LessonlistForm", lessonDataForm);
+		model.addAttribute("lessonlistForm", lessonDataForm);
 
 		return "/02_update/update";
 	}

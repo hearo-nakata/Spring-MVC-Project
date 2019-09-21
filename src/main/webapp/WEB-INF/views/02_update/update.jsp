@@ -16,20 +16,15 @@
   <link rel="stylesheet" href="resources/css/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-
 </head>
 
 <body>
 
-  <fieldset>
-
-        <form:form modelAttribute="LessonlistForm">
-
             <!-- Default form contact -->
-<form:form modelAttribute="LessonlistForm" class="text-center border border-light p-5" action="#!">
+<form:form modelAttribute="lessonlistForm" class="text-center border border-light p-5" action="#!">
 
 	 <!-- タイトル部分 ユーザーIDを『』内に表示 -->
-    <p class="h4 mb-4" align="center" >Update User: 『 ${LessonlistForm.userId} 』</p>
+    <p class="h4 mb-4 bg-info text-white rounded">Update User: 『 ${lessonlistForm.userId} 』</p>
 
     <!-- userFirstName -->
     <label>FirstName</label>
@@ -76,8 +71,7 @@
 
 </form:form>
 <!-- Default form contact -->
-        </form:form>
-  </fieldset>
+
 </body>
 
 </html>
