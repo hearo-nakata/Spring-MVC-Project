@@ -32,8 +32,8 @@ public class UpdateController {
 
 	@ModelAttribute
 	public LessonlistForm setLessonlistForm() {
-		LessonlistForm LessonlistForm = new LessonlistForm();
-		return LessonlistForm;
+		LessonlistForm lessonlistForm = new LessonlistForm();
+		return lessonlistForm;
 	}
 
 	/**
@@ -51,10 +51,10 @@ public class UpdateController {
 	}
 
 	@RequestMapping(value = "/02_update/update/{id}", method = RequestMethod.POST)
-	public String updateData(@PathVariable String id, Model model, LessonlistForm LessonlistForm) {
+	public String updateData(@PathVariable String id, Model model, LessonlistForm lessonlistForm) {
 		logger.info("update data");
 
-		repository.update(LessonlistForm.getUserFirstName(), LessonlistForm.getUserLastName(), LessonlistForm.getLesson1st(), LessonlistForm.getLesson2nd(), id);
+		repository.update(lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd(), id);
 
 		return "/02_update/update";
 	}
