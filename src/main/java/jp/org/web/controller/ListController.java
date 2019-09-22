@@ -36,18 +36,6 @@ public class ListController {
     public String home(Model model) {
         logger.info("List screen display");
 
-      /*  過去無理やりリストの中身を入力して出力していた際の実装
-        List<LoginForm> listList = new ArrayList<>();
-        LoginForm loginForm = new LoginForm();
-        LoginForm loginForm2 = new LoginForm();
-        loginForm.setLoginId("sakae");
-        loginForm.setPassword("pass");
-        loginForm2.setLoginId("hogehoge");
-        loginForm2.setPassword("fumufumu");
-        listList.add(loginForm);
-        listList.add(loginForm2);
-                model.addAttribute("listForms", listList);
-        */
 
         List<LessonlistForm> lessonListForm = lessonnListRepository.getLessonListMap();
         model.addAttribute("lessonList", lessonListForm);

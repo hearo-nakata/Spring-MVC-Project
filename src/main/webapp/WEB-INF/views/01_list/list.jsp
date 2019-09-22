@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page contentType="text/html; charset=UTF-8" %>
 <html lang="en" >
 
 <head>
@@ -60,7 +59,7 @@
 			          <tbody>
             			<c:forEach items="${lessonList}" var="listRow" varStatus="status">
             		<tr>
-		                <td>${listRow.userId}</td>
+            			<td><a href="/web/02_update/update/${listRow.userId}" target="_self">${listRow.userId}</a></td>
 		                <td>${listRow.userFirstName}</td>
 		                <td>${listRow.userLastName}</td>
 		                <td>${listRow.lesson1st}</td>
