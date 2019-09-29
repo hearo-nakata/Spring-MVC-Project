@@ -12,6 +12,4 @@ public interface LanguageRepository {
     @Select("select * from samurai_language")
     List<LanguageForm> getlanguagelist();
 
-
-
 }

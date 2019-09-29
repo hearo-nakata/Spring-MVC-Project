@@ -46,7 +46,6 @@ public class UpdateController {
 	public LanguageForm setlanguageForm() {
 		LanguageForm languageForm = new LanguageForm();
 		return languageForm;
-
 	}
 
 	/**
@@ -58,7 +57,7 @@ public class UpdateController {
 		logger.info("userId -> " + id);
 
 		List<LanguageForm> languageForm = languagerepository.getlanguagelist();
-		model.addAttribute("languageForm", languageForm);
+		model.addAttribute("language", languageForm);
 
 		logger.info("language -> " + languageForm.get(0).getLanguage());
 
