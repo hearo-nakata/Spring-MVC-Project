@@ -1,5 +1,6 @@
 package jp.org.web.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.org.web.form.LanguageForm;
 import jp.org.web.form.LessonlistForm;
+import jp.org.web.repository.LanguageRepository;
 import jp.org.web.repository.LessonListRepository;
 
 
@@ -28,12 +31,22 @@ public class UpdateController {
 	private static final Logger logger = LoggerFactory.getLogger(UpdateController.class);
 
 	@Autowired
-	private LessonListRepository repository;
+	private LessonListRepository lessonlistrepository;
+
+	@Autowired
+	private LanguageRepository languagerepository;
 
 	@ModelAttribute
 	public LessonlistForm setlessonlistForm() {
 		LessonlistForm lessonlistForm = new LessonlistForm();
 		return lessonlistForm;
+	}
+
+	@ModelAttribute
+	public LanguageForm setlanguageForm() {
+		LanguageForm languageForm = new LanguageForm();
+		return languageForm;
+
 	}
 
 	/**
@@ -44,7 +57,12 @@ public class UpdateController {
 		logger.info("Update screen display");
 		logger.info("userId -> " + id);
 
-		LessonlistForm lessonDataForm = repository.getLessonData(id);
+		List<LanguageForm> languageForm = languagerepository.getlanguagelist();
+		model.addAttribute("languageForm", languageForm);
+
+		logger.info("language -> " + languageForm.get(0).getLanguage());
+
+		LessonlistForm lessonDataForm = lessonlistrepository.getLessonData(id);
 		model.addAttribute("lessonlistForm", lessonDataForm);
 
 		return "/02_update/update";
@@ -54,7 +72,9 @@ public class UpdateController {
 	public String updateData(@PathVariable String id, Model model, LessonlistForm lessonlistForm) {
 		logger.info("update data");
 
-		repository.update(lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd(), id);
+		languagerepository.getlanguagelist();
+
+		lessonlistrepository.update(lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd(), id);
 
 		return "/02_update/update";
 	}
