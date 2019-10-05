@@ -2,6 +2,7 @@ package jp.org.web.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -27,5 +28,8 @@ public interface LessonListRepository {
 							,@Param("lesson1st") String lesson1st
 							,@Param("lesson2nd") String lesson2nd
 							,@Param("userId") String userId);
+
+	@Delete("delete from samurai_lessonlist where userId = #{userId}")
+	void deleteLessonData(@Param("userId") String userId);
 
 }
