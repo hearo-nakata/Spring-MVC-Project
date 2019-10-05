@@ -16,6 +16,8 @@ public class LessonlistForm implements Serializable {
 
 	private String lesson2nd = "";
 
+	private boolean deleteFlg = false;
+
 	public String getUserId() {
 		return userId;
 	}
@@ -54,6 +56,14 @@ public class LessonlistForm implements Serializable {
 
 	public void setLesson2nd(String lesson2nd) {
 		this.lesson2nd = lesson2nd;
+	}
+
+	public boolean isDeleteFlg() {
+		return deleteFlg;
+	}
+
+	public void setDeleteFlg(boolean deleteFlg) {
+		this.deleteFlg = deleteFlg;
 	}
 
 

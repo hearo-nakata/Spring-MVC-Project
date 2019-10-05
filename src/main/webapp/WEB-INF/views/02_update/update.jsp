@@ -35,36 +35,21 @@
     <form:input path= "userLastName" class="form-control mb-4" placeholder="LastName"/>
 
     <!-- lesson1st -->
-    <label>lesson1st</label>
-    <form:input path= "lesson1st" class="form-control mb-4" placeholder="lesson1st"/>
+	<label>Lesson1st</label>
+	<form:select path="lesson1st" class="form-control mb-4">
+		<form:options items="${language}" itemValue="language" itemLabel="language"/>
+	</form:select>
 
     <!-- lesson2nd -->
-    <label>lesson2nd</label>
-    <form:input path= "lesson2nd" class="form-control mb-4" placeholder="lesson2nd"/>
+    <label>Lesson2nd</label>
+	<form:select path="lesson2nd" class="form-control mb-4">
+		<form:options items="${language}" itemValue="language" itemLabel="language"/>
+	</form:select>
 
-
-
-
-
-    <!-- Subject -->
-    <label>Subject</label>
-    <select class="browser-default custom-select mb-4">
-        <option value="" disabled>Choose option</option>
-        <option value="1" selected>Feedback</option>
-        <option value="2">Report a bug</option>
-        <option value="3">Feature request</option>
-        <option value="4">Feature request</option>
-    </select>
-
-    <!-- Message -->
-    <div class="form-group">
-        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
-    </div>
-
-    <!-- Copy -->
+    <!-- delete -->
     <div class="custom-control custom-checkbox mb-4">
-        <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
-        <label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>
+        <form:checkbox path="deleteFlg"/>
+        <form:label path="">このIDを削除</form:label>
     </div>
 
     <!-- Send button -->

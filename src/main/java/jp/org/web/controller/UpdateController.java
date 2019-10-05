@@ -70,12 +70,15 @@ public class UpdateController {
 	@RequestMapping(value = "/02_update/update/{id}", method = RequestMethod.POST)
 	public String updateData(@PathVariable String id, Model model, LessonlistForm lessonlistForm) {
 		logger.info("update data");
-
 		languagerepository.getlanguagelist();
 
-		lessonlistrepository.update(lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd(), id);
+		if(lessonlistForm.isDeleteFlg()) {
+			lessonlistrepository.deleteLessonData(id);
+		}else {
+			lessonlistrepository.update(lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd(), id);
+		}
+		return "redirect:/01_list/list";
 
-		return "/02_update/update";
 	}
 
 }
