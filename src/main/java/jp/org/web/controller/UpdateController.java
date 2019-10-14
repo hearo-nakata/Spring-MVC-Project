@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.org.web.form.LanguageForm;
 import jp.org.web.form.LessonlistForm;
@@ -68,15 +69,23 @@ public class UpdateController {
 	}
 
 	@RequestMapping(value = "/02_update/update/{id}", method = RequestMethod.POST)
-	public String updateData(@PathVariable String id, Model model, LessonlistForm lessonlistForm) {
+	public String updateData(@PathVariable String id, Model model, LessonlistForm lessonlistForm, RedirectAttributes attr) {
 		logger.info("update data");
-		languagerepository.getlanguagelist();
+
+		//初期値としてupdateを持たせる
+		String funcType = "update";
 
 		if(lessonlistForm.isDeleteFlg()) {
 			lessonlistrepository.deleteLessonData(id);
+		//削除の場合はdeleteを代入
+		funcType = "delete";
 		}else {
 			lessonlistrepository.update(lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd(), id);
 		}
+
+		//URLのパラメータで更新か削除かをセットする
+		attr.addAttribute("funcType", funcType);
+
 		return "redirect:/01_list/list";
 
 	}
