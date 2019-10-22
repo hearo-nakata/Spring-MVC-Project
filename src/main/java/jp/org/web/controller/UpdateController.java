@@ -49,6 +49,7 @@ public class UpdateController {
 		return languageForm;
 	}
 
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -68,6 +69,25 @@ public class UpdateController {
 		return "/02_update/update";
 	}
 
+	//新規ボタン押下で画面遷移してきた時のメソッド
+	@RequestMapping(value = "/02_update/update/addRow", method = RequestMethod.GET)
+	public String initNewRow(Locale locale, Model model) {
+		logger.info("Update screen display new row");
+
+		String newUserId = String.format("%03d", this.getAddRowNo());
+		LessonlistForm lessonDataForm = new LessonlistForm();
+		lessonDataForm.setUserId(newUserId);
+		lessonDataForm.setInsertFlg(true);
+		model.addAttribute("lessonListForm", lessonDataForm);
+
+		List<LanguageForm> languageForm = languagerepository.getlanguagelist();
+		model.addAttribute("languageForm", languageForm);
+
+		return "/02_update/update";
+	}
+
+
+
 	@RequestMapping(value = "/02_update/update/{id}", method = RequestMethod.POST)
 	public String updateData(@PathVariable String id, Model model, LessonlistForm lessonlistForm, RedirectAttributes attr) {
 		logger.info("update data");
@@ -79,6 +99,10 @@ public class UpdateController {
 			lessonlistrepository.deleteLessonData(id);
 		//削除の場合はdeleteを代入
 		funcType = "delete";
+		//新規作成の場合はinsertを代入
+		} else if(lessonlistForm.isInsertFlg()) {
+			lessonlistrepository.insert(lessonlistForm.getUserId(), lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd());
+			funcType = "insert";
 		}else {
 			lessonlistrepository.update(lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd(), id);
 		}
@@ -88,6 +112,21 @@ public class UpdateController {
 
 		return "redirect:/01_list/list";
 
+	}
+
+	//空いてるuserId探すメソッド
+	private int getAddRowNo() {
+		List<LessonlistForm> list = lessonlistrepository.getLessonListMap();
+		int newRowId = 1;
+		for(LessonlistForm lessonForm: list) {
+			int userIdInt = Integer.parseInt(lessonForm.getUserId());
+			if(userIdInt != newRowId) {
+				return newRowId;
+			}
+			newRowId++;
+		}
+
+		return newRowId;
 	}
 
 }
