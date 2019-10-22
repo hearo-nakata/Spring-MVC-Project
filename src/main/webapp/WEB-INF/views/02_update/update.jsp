@@ -17,18 +17,19 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+
 <script type="text/javascript">
 	$(function() {
-/*			$("input[name='userFirstName']").focusin(function (){
+			$("input[name='userFirstName']").focusin(function (){
 				$(this).addClass('bg-primary text-white');
 			}).blur(function(){
 				$(this).removeClass('bg-primary text-white');
 			});
 	});
 
-*/
+	</script>
 
-	//urlがaddRowだったらボタン名を更新->新規登録に変更
+
 	<script type="text/javascript">
 			$(document).ready(function ($) {
 				console.log('insertflg -> ' + $('input:hidden[name="insertFlg"]').val());
@@ -36,7 +37,6 @@
 					$('[name=submitButton]:input').text('新規登録');
 				}
 			});
-		});
 	</script>
 
 

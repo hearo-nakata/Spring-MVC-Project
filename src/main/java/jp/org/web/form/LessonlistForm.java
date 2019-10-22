@@ -16,7 +16,7 @@ public class LessonlistForm implements Serializable {
 
 	private String lesson2nd = "";
 
-	private boolean deleteFlg = false;
+	private boolean deleteFlg;
 
 	private boolean insertFlg;
 

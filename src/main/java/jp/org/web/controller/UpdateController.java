@@ -81,33 +81,35 @@ public class UpdateController {
 		model.addAttribute("lessonListForm", lessonDataForm);
 
 		List<LanguageForm> languageForm = languagerepository.getlanguagelist();
-		model.addAttribute("languageForm", languageForm);
+		model.addAttribute("language", languageForm);
 
 		return "/02_update/update";
 	}
 
 
 
-	@RequestMapping(value = "/02_update/update/{id}", method = RequestMethod.POST)
-	public String updateData(@PathVariable String id, Model model, LessonlistForm lessonlistForm, RedirectAttributes attr) {
+	@RequestMapping(value = "/02_update/update/{path}", method = RequestMethod.POST)
+	public String updateData(@PathVariable String path, Model model, LessonlistForm lessonlistForm, RedirectAttributes attr) {
 		logger.info("update data");
 
 		//初期値としてupdateを持たせる
 		String funcType = "update";
 
+		//削除の場合
 		if(lessonlistForm.isDeleteFlg()) {
-			lessonlistrepository.deleteLessonData(id);
-		//削除の場合はdeleteを代入
+			lessonlistrepository.deleteLessonData(lessonlistForm.getUserId());
+		//deleteを代入
 		funcType = "delete";
-		//新規作成の場合はinsertを代入
+		//新規作成の場合
 		} else if(lessonlistForm.isInsertFlg()) {
 			lessonlistrepository.insert(lessonlistForm.getUserId(), lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd());
+			//insertを代入
 			funcType = "insert";
 		}else {
-			lessonlistrepository.update(lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd(), id);
+			lessonlistrepository.update(lessonlistForm.getUserId(), lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd());
 		}
 
-		//URLのパラメータで更新か削除かをセットする
+		//URLのパラメータで更新か削除か新規かをセットする
 		attr.addAttribute("funcType", funcType);
 
 		return "redirect:/01_list/list";
