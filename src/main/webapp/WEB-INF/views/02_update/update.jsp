@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 			$("input[name='userFirstName']").focusin(function (){
@@ -25,17 +26,29 @@
 				$(this).removeClass('bg-primary text-white');
 			});
 	});
+
 	</script>
+
+
+	<script type="text/javascript">
+			$(document).ready(function ($) {
+				console.log('insertflg -> ' + $('input:hidden[name="insertFlg"]').val());
+				if($('input:hidden[name="insertFlg"]').val() == 'true') {
+					$('[name=submitButton]:input').text('新規登録');
+				}
+			});
+	</script>
+
 
 </head>
 
 <body>
 
-            <!-- Default form contact -->
-<form:form modelAttribute="lessonlistForm" class="text-center border border-light p-5" action="#!">
+		<!-- Default form contact -->
+	<form:form modelAttribute="LessonListForm" class="text-center border border-light p-5" action="#!">
 
-	 <!-- タイトル部分 ユーザーIDを『』内に表示 -->
-    <p class="h4 mb-4 bg-info text-white rounded">Update User: 『 ${lessonlistForm.userId} 』</p>
+	<!--タイトル部分 -->
+	<p class="h4 mb-4 bg-info text-white rounded">userId: ${LessonListForm.userId}</p>
 
     <!-- userFirstName -->
     <label>FirstName</label>
@@ -64,9 +77,10 @@
     </div>
 
     <!-- Send button -->
-    <form:button class="btn btn-info btn-block">更新</form:button>
+    <form:button name="submitButton" class="btn btn-info btn-block">更新</form:button>
 
     <form:hidden path="userId"/>
+    <form:hidden path="insertFlg"/>
 
 </form:form>
 <!-- Default form contact -->

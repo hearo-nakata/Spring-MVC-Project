@@ -40,6 +40,8 @@
 				const typeSplit = type.split('=');
 				if(typeSplit[1] == 'delete') {
 					message = '削除';
+				} else if(typeSplit[1] == 'insert') {
+					message = '登録';
 				}
 				toastr.options = {
 						"positionClass": "toast-top-center",
@@ -55,12 +57,14 @@
 
  <body>
    <form:form modelAttribute="lessonList">
-        <div class="container-fluid">
-        <div class="row">
-        	<div class="col" style="display: flex; justify-content: flex-end;">
-           		<input type="submit" name="logout" class="btn btn-primary" value="ログアウト"/>
-        	</div>
-        </div>
+		<div class="row" style="padding-bottom: 10px;">
+			<div class="col-md-11" style="padding: 0px;">
+				<input type="submit" name="addRow" class="btn btn-success" value="新規登録"/>
+			</div>
+			<div class="col-md-1" style="padding: 0px;">
+				<input type="submit" name="logout" class="btn btn-primary" value="ログアウト"/>
+			</div>
+		</div>
 
         <div class="row">
         	<div class="col">

@@ -43,4 +43,11 @@ public class ListController {
         return "01_list/list";
     }
 
+	@RequestMapping(value = "/01_list/list", params="addRow", method = RequestMethod.POST)
+	public String doAddRow(Model model) {
+		logger.info("Do transfer update screen and add row");
+
+		return "redirect:/02_update/update/addRow";
+	}
+
 }
