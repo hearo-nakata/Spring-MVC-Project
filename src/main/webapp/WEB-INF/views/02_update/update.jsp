@@ -45,10 +45,10 @@
 <body>
 
 		<!-- Default form contact -->
-	<form:form modelAttribute="lessonlistForm" class="text-center border border-light p-5" action="#!">
+	<form:form modelAttribute="LessonListForm" class="text-center border border-light p-5" action="#!">
 
 	<!--タイトル部分 -->
-	<p class="h4 mb-4 bg-info text-white rounded">userId: ${lessonlistForm.userId}</p>
+	<p class="h4 mb-4 bg-info text-white rounded">userId: ${LessonListForm.userId}</p>
 
     <!-- userFirstName -->
     <label>FirstName</label>

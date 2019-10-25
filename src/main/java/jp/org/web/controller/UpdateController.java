@@ -64,7 +64,7 @@ public class UpdateController {
 		logger.info("language -> " + languageForm.get(0).getLanguage());
 
 		LessonlistForm lessonDataForm = lessonlistrepository.getLessonData(id);
-		model.addAttribute("lessonlistForm", lessonDataForm);
+		model.addAttribute("LessonListForm", lessonDataForm);
 
 		return "/02_update/update";
 	}
@@ -78,7 +78,7 @@ public class UpdateController {
 		LessonlistForm lessonDataForm = new LessonlistForm();
 		lessonDataForm.setUserId(newUserId);
 		lessonDataForm.setInsertFlg(true);
-		model.addAttribute("lessonListForm", lessonDataForm);
+		model.addAttribute("LessonListForm", lessonDataForm);
 
 		List<LanguageForm> languageForm = languagerepository.getlanguagelist();
 		model.addAttribute("language", languageForm);

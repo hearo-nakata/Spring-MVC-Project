@@ -31,11 +31,11 @@ public interface LessonListRepository {
             + ", lesson1st = #{lesson1st}"
             + ", lesson2nd = #{lesson2nd}"
             + " where userId = #{userId}")
-			void update(@Param("userFirstName") String userFirstName
+			void update(@Param("userId") String userId
+							,@Param("userFirstName") String userFirstName
 							,@Param("userLastName") String userLastName
 							,@Param("lesson1st") String lesson1st
-							,@Param("lesson2nd") String lesson2nd
-							,@Param("userId") String userId);
+							,@Param("lesson2nd") String lesson2nd);
 
 	@Delete("delete from samurai_lessonlist where userId = #{userId}")
 	void deleteLessonData(@Param("userId") String userId);
