@@ -49,6 +49,7 @@ public class UpdateController {
 		return languageForm;
 	}
 
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -63,31 +64,71 @@ public class UpdateController {
 		logger.info("language -> " + languageForm.get(0).getLanguage());
 
 		LessonlistForm lessonDataForm = lessonlistrepository.getLessonData(id);
-		model.addAttribute("lessonlistForm", lessonDataForm);
+		model.addAttribute("LessonListForm", lessonDataForm);
 
 		return "/02_update/update";
 	}
 
-	@RequestMapping(value = "/02_update/update/{id}", method = RequestMethod.POST)
-	public String updateData(@PathVariable String id, Model model, LessonlistForm lessonlistForm, RedirectAttributes attr) {
+	//新規ボタン押下で画面遷移してきた時のメソッド
+	@RequestMapping(value = "/02_update/update/addRow", method = RequestMethod.GET)
+	public String initNewRow(Locale locale, Model model) {
+		logger.info("Update screen display new row");
+
+		String newUserId = String.format("%03d", this.getAddRowNo());
+		LessonlistForm lessonDataForm = new LessonlistForm();
+		lessonDataForm.setUserId(newUserId);
+		lessonDataForm.setInsertFlg(true);
+		model.addAttribute("LessonListForm", lessonDataForm);
+
+		List<LanguageForm> languageForm = languagerepository.getlanguagelist();
+		model.addAttribute("language", languageForm);
+
+		return "/02_update/update";
+	}
+
+
+
+	@RequestMapping(value = "/02_update/update/{path}", method = RequestMethod.POST)
+	public String updateData(@PathVariable String path, Model model, LessonlistForm lessonlistForm, RedirectAttributes attr) {
 		logger.info("update data");
 
 		//初期値としてupdateを持たせる
 		String funcType = "update";
 
+		//削除の場合
 		if(lessonlistForm.isDeleteFlg()) {
-			lessonlistrepository.deleteLessonData(id);
-		//削除の場合はdeleteを代入
+			lessonlistrepository.deleteLessonData(lessonlistForm.getUserId());
+		//deleteを代入
 		funcType = "delete";
+		//新規作成の場合
+		} else if(lessonlistForm.isInsertFlg()) {
+			lessonlistrepository.insert(lessonlistForm.getUserId(), lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd());
+			//insertを代入
+			funcType = "insert";
 		}else {
-			lessonlistrepository.update(lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd(), id);
+			lessonlistrepository.update(lessonlistForm.getUserId(), lessonlistForm.getUserFirstName(), lessonlistForm.getUserLastName(), lessonlistForm.getLesson1st(), lessonlistForm.getLesson2nd());
 		}
 
-		//URLのパラメータで更新か削除かをセットする
+		//URLのパラメータで更新か削除か新規かをセットする
 		attr.addAttribute("funcType", funcType);
 
 		return "redirect:/01_list/list";
 
+	}
+
+	//空いてるuserId探すメソッド
+	private int getAddRowNo() {
+		List<LessonlistForm> list = lessonlistrepository.getLessonListMap();
+		int newRowId = 1;
+		for(LessonlistForm lessonForm: list) {
+			int userIdInt = Integer.parseInt(lessonForm.getUserId());
+			if(userIdInt != newRowId) {
+				return newRowId;
+			}
+			newRowId++;
+		}
+
+		return newRowId;
 	}
 
 }
