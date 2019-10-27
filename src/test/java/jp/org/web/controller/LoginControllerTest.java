@@ -62,9 +62,4 @@ public class LoginControllerTest {
 		assertThat(loginForm.getPassword(), is(""));
 	}
 
-	@Test
-	public void testDoLogout() {
-		assertThat(loginController.doLogout(model), is("redirect:/login"));
-	}
-
 }
