@@ -50,4 +50,11 @@ public class ListController {
 		return "redirect:/02_update/update/addRow";
 	}
 
+	@RequestMapping(value = "/01_list/list", params="logout", method = RequestMethod.POST)
+    public String doLogout(Model model) {
+        logger.info("Do logout and transfer login screen");
+
+        return "redirect:/login";
+    }
+
 }
