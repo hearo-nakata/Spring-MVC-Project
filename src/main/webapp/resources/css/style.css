@@ -98,3 +98,8 @@ input[type="submit"]:hover{
 ::-webkit-input-placeholder {
 
 }
+
+.errorMsg{
+	color: red;
+	font-weight: bold;
+}
