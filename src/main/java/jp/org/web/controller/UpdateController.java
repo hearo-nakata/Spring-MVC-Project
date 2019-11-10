@@ -13,7 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jp.org.web.form.LanguageForm;
 import jp.org.web.form.LessonlistForm;
@@ -98,7 +104,17 @@ public class UpdateController {
 		return "/02_update/update";
 	}
 
+    @RequestMapping(value = "/02_update/update/getInformation", method = RequestMethod.GET)
+    @ResponseBody
+    public String getInformation(@RequestParam("language") String language) throws JsonMappingException, JsonProcessingException {
+        logger.info("Start getInformation");
+        LanguageForm languageForm = languagerepository.getlanguageInfo(language);
 
+        ObjectMapper mapper = new ObjectMapper();
+        String ret = mapper.writeValueAsString(languageForm);
+        logger.info("End getInformation");
+        return ret;
+    }
 
 	@RequestMapping(value = "/02_update/update/{path}", method = RequestMethod.POST)
 	public String updateData(@PathVariable String path, Model model, LessonlistForm lessonlistForm, RedirectAttributes attr) {
