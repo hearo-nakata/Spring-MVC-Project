@@ -2,13 +2,21 @@ package jp.org.web.form;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Size;
+
+import jp.org.web.message.LoginMessage;
+
 public class LoginForm implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String loginId = "";
+	@Size(min = 1, message=LoginMessage.loginIdBlank)
+	private String loginId;
 
-	private String password = "";
+	@Size(min = 1, message=LoginMessage.passwordBlank)
+	private String password;
+
+	private String errorMessage;
 
 	public String getLoginId() {
 		return loginId;
@@ -32,6 +40,14 @@ public class LoginForm implements Serializable {
 		}
 		*/
 		this.password = password;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
 }

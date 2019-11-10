@@ -20,6 +20,10 @@ public class LessonlistForm implements Serializable {
 
 	private boolean insertFlg;
 
+	private String information1st;
+
+	private String information2nd;
+
 	public String getUserId() {
 		return userId;
 	}
@@ -74,6 +78,22 @@ public class LessonlistForm implements Serializable {
 
 	public void setInsertFlg(boolean insertFlg) {
 		this.insertFlg = insertFlg;
+	}
+
+	public String getInformation1st() {
+		return information1st;
+	}
+
+	public void setInformation1st(String information1st) {
+		this.information1st = information1st;
+	}
+
+	public String getInformation2nd() {
+		return information2nd;
+	}
+
+	public void setInformation2nd(String information2nd) {
+		this.information2nd = information2nd;
 	}
 
 

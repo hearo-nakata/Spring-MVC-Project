@@ -2,6 +2,7 @@ package jp.org.web.controller;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,11 +60,22 @@ public class UpdateController {
 		logger.info("userId -> " + id);
 
 		List<LanguageForm> languageForm = languagerepository.getlanguagelist();
-		model.addAttribute("language", languageForm);
-
-		logger.info("language -> " + languageForm.get(0).getLanguage());
-
 		LessonlistForm lessonDataForm = lessonlistrepository.getLessonData(id);
+
+		//lessonlistに入ってるlanguageとlanguageテーブルのinformationを紐付ける(homeメソッドに追加)
+        Optional<String> information1 = this.getLanguageInformation(lessonDataForm.getLesson1st(), languageForm);
+        Optional<String> information2 = this.getLanguageInformation(lessonDataForm.getLesson2nd(), languageForm);
+
+		// 値があるときだけ下記の処理実施
+//		information1.ifPresent(x -> {
+//			lessonDataForm.setInformation1st(x);
+//		});
+
+        lessonDataForm.setInformation1st(information1.get());
+        lessonDataForm.setInformation2nd(information2.get());
+
+        //順序が重要 model.attributeは最後
+		model.addAttribute("language", languageForm);
 		model.addAttribute("LessonListForm", lessonDataForm);
 
 		return "/02_update/update";
@@ -130,5 +142,12 @@ public class UpdateController {
 
 		return newRowId;
 	}
+
+	//LessonListテーブルから取得したlanguageとLanguageテーブルから取得したlanguageを紐付けてinformationを取得する
+    private Optional<String> getLanguageInformation(String language, List<LanguageForm> languageForm) {
+        Optional<String> information = languageForm.stream().filter(x -> x.getLanguage().equals(language)).map(x -> x.getInformation()).findFirst();
+
+        return information;
+    }
 
 }
