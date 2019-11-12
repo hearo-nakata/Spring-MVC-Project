@@ -110,10 +110,11 @@
         <form:label path="">このIDを削除</form:label>
     </div>
 
-    <!-- Send button -->
-    <form:button class="btn btn-info btn-block">更新</form:button>
+    <!-- 更新 -->
+    <form:button name="submitButton" class="btn btn-info btn-block">更新</form:button>
 
-    <form:hidden path="userId"/>
+	<form:hidden path="userId"/>
+	<form:hidden path="insertFlg"/>
 
 </form:form>
 <!-- Default form contact -->
