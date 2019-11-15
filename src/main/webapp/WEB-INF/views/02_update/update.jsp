@@ -17,38 +17,70 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-
 <script type="text/javascript">
 	$(function() {
-			$("input[name='userFirstName']").focusin(function (){
+/*			$("input[name='userFirstName']").focusin(function (){
 				$(this).addClass('bg-primary text-white');
 			}).blur(function(){
 				$(this).removeClass('bg-primary text-white');
 			});
 	});
+*/
+	$(document).ready(function ($) {
+			console.log('insertflg -> ' + $('input:hidden[name="insertFlg"]').val());
+			if($('input:hidden[name="insertFlg"]').val() == 'true') {
+				$('[name=submitButton]:input').text('新規登録');
+			}
+
+		 	$(function() {
+	 		    $("select").change(function() {
+	 		    	getAsyncInformation(this);
+	 		    });
+	 		});
+	 		function getAsyncInformation(selectObj) {
+		    	let obj = $(selectObj).next("input");
+			    console.log($(selectObj).val());
+			    console.log(obj.val());
+		        $.ajax({
+		            type        : "GET",
+		            url         : "/web/02_update/update/getInformation",
+		            data        : {language: $(selectObj).val()},
+		            dataType    : "json",
+		            success     : function(data) {
+		                            success(data, obj);
+		                        },
+		            error       : function(XMLHttpRequest, textStatus, errorThrown) {
+		                            error(XMLHttpRequest, textStatus, errorThrown);
+		                        }
+		        });
+		 		// Ajax通信成功時処理
+		 		function success(data, obj) {
+		 		    //console.table(data);
+		 		    console.log(data.information);
+		 		    obj.val(data.information);
+		 		}
+
+		 		// Ajax通信失敗時処理
+		 		function error(XMLHttpRequest, textStatus, errorThrown) {
+		 			console.log("error:" + XMLHttpRequest);
+		 			console.log("status:" + textStatus);
+		 			console.log("errorThrown:" + errorThrown);
+		 		}
+	 		}
+		});
+	});
 
 	</script>
-
-
-	<script type="text/javascript">
-			$(document).ready(function ($) {
-				console.log('insertflg -> ' + $('input:hidden[name="insertFlg"]').val());
-				if($('input:hidden[name="insertFlg"]').val() == 'true') {
-					$('[name=submitButton]:input').text('新規登録');
-				}
-			});
-	</script>
-
 
 </head>
 
 <body>
 
 		<!-- Default form contact -->
-	<form:form modelAttribute="LessonListForm" class="text-center border border-light p-5" action="#!">
+<form:form modelAttribute="LessonListForm" class="text-center border border-light p-5" action="#!">
 
-	<!--タイトル部分 -->
-	<p class="h4 mb-4 bg-info text-white rounded">userId: ${LessonListForm.userId}</p>
+	 <!-- タイトル部分 ユーザーIDを『』内に表示 -->
+    <p class="h4 mb-4 bg-info text-white rounded">User ID: 『 ${LessonListForm.userId} 』</p>
 
     <!-- userFirstName -->
     <label>FirstName</label>
@@ -58,17 +90,19 @@
     <label>LastName</label>
     <form:input path= "userLastName" class="form-control mb-4" placeholder="LastName"/>
 
-    <!-- lesson1st -->
-	<label>Lesson1st</label>
-	<form:select path="lesson1st" class="form-control mb-4">
-		<form:options items="${language}" itemValue="language" itemLabel="language"/>
+    <!-- Lesson1st -->
+    <label>Lesson1st</label>
+    <form:select path="lesson1st" class="form-control mb-4">
+   		<form:options items="${language}" itemValue="language" itemLabel="language"/>
 	</form:select>
+	<form:input path="information1st" class="form-control mb-4"/>
 
-    <!-- lesson2nd -->
+    <!-- Lesson2nd -->
     <label>Lesson2nd</label>
-	<form:select path="lesson2nd" class="form-control mb-4">
-		<form:options items="${language}" itemValue="language" itemLabel="language"/>
+    <form:select path="lesson2nd" class="form-control mb-4">
+   		<form:options items="${language}" itemValue="language" itemLabel="language"/>
 	</form:select>
+	<form:input path="information2nd" class="form-control mb-4"/>
 
     <!-- delete -->
     <div class="custom-control custom-checkbox mb-4">
@@ -76,11 +110,11 @@
         <form:label path="">このIDを削除</form:label>
     </div>
 
-    <!-- Send button -->
+    <!-- 更新 -->
     <form:button name="submitButton" class="btn btn-info btn-block">更新</form:button>
 
-    <form:hidden path="userId"/>
-    <form:hidden path="insertFlg"/>
+	<form:hidden path="userId"/>
+	<form:hidden path="insertFlg"/>
 
 </form:form>
 <!-- Default form contact -->
