@@ -675,3 +675,15 @@ li {
     padding: 20px 0;
   }
 }
+
+.main-back-ground-color{
+	background-color: #66BB6A;
+}
+
+.accent-back-ground-color{
+	background-color: #AB47BC;
+}
+
+.text-color{
+	color: white;
+}
