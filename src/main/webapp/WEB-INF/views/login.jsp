@@ -33,11 +33,22 @@
 			});
  	</script>
 
+ 	<link href="resources/css/style.css" media="all" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body onload='loginFocus()'>
+  <nav id="gnav" class="fixed">
+    <ul class="main-back-ground-color">
+      <li><a href="#works"><span class="text-color">WORKS</span></a></li>
+      <li><a href="#feature"><span class="text-color">FEATURE</span></a></li>
+      <li><a href="#about"><span class="text-color">ABOUT</span></a></li>
+      <li><a href="#skill"><span class="text-color">SKILL</span></a></li>
+      <li><a href="#contact"><span class="text-color">CONTACT</span></a></li>
+    </ul>
+  </nav>
 
-  <fieldset>
+  <fieldset style="margin-top: 100px;">
     <h1>Login</h1>
      <form:form modelAttribute="loginForm">
 		<div>

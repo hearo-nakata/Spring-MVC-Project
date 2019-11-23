@@ -23,12 +23,12 @@
 <body>
   <div id="wrapper">
     <nav id="gnav" class="fixed">
-      <ul>
-        <li><a href="#works">WORKS</a></li>
-        <li><a href="#feature">FEATURE</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#skill">SKILL</a></li>
-        <li><a href="#contact">CONTACT</a></li>
+      <ul class="main-back-ground-color">
+        <li><a href="#works"><span class="text-color">WORKS</span></a></li>
+        <li><a href="#feature"><span class="text-color">FEATURE</span></a></li>
+        <li><a href="#about"><span class="text-color">ABOUT</span></a></li>
+        <li><a href="#skill"><span class="text-color">SKILL</span></a></li>
+        <li><a href="#contact"><span class="text-color">CONTACT</span></a></li>
       </ul>
     </nav>
     <header id="header">
