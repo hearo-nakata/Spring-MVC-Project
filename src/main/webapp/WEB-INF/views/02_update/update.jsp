@@ -15,6 +15,7 @@
   <title>Update</title>
   <link rel="stylesheet" href="resources/css/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/web/resources/style.css">
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -80,7 +81,7 @@
 <form:form modelAttribute="LessonListForm" class="text-center border border-light p-5" action="#!">
 
 	 <!-- タイトル部分 ユーザーIDを『』内に表示 -->
-    <p class="h4 mb-4 bg-info text-white rounded">User ID: 『 ${LessonListForm.userId} 』</p>
+    <p class="h4 mb-4 text-white rounded main-back-ground-color">User ID: 『 ${LessonListForm.userId} 』</p>
 
     <!-- userFirstName -->
     <label>FirstName</label>
@@ -111,7 +112,7 @@
     </div>
 
     <!-- 更新 -->
-    <form:button name="submitButton" class="btn btn-info btn-block">更新</form:button>
+    <form:button name="submitButton" class="btn accent-back-ground-color text-white btn-block">更新</form:button>
 
 	<form:hidden path="userId"/>
 	<form:hidden path="insertFlg"/>

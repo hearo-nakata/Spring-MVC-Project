@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <link rel="stylesheet" href="/web/resources/style.css">
 	<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
@@ -47,7 +48,7 @@
 						"positionClass": "toast-top-center",
 						"timeOut": "2000"
 				}
-				toastr.info(message + 'が完了しました');
+				toastr.success(message + 'が完了しました');
 			}
 
         });
@@ -68,7 +69,7 @@
 
         <div class="row">
         	<div class="col">
-         		<table id="dtDynamicVerticalScrollExample" class="datatables table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+         		<table id="dtDynamicVerticalScrollExample" class="datatables table table-striped table-bordered table-sm">
           			<thead>
 			            <tr>
 			              <th scope="col">userId</th>

@@ -50,7 +50,7 @@
 
   <fieldset style="margin-top: 100px;">
     <h1>Login</h1>
-     <form:form modelAttribute="loginForm">
+     <form:form cssClass="padding-add login-form" modelAttribute="loginForm">
 		<div>
 			<div class="iconUser"></div>
 			<form:input path="loginId" id="login" placeholder="Username"/>
@@ -61,7 +61,7 @@
 			<form:input path="password" type="password" placeholder="Password"/>
 		</div>
 		<form:errors path="password" cssClass="errorMsg"/>
-		<input type="submit" value="Enter">
+		<input class="login-style" type="submit" value="Enter">
 		<form:hidden path="errorMessage"/>
     </form:form>
   </fieldset>
