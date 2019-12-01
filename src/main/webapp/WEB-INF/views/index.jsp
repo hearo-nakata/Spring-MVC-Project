@@ -266,6 +266,8 @@
                 </li>
                 <li><a href="https://www.facebook.com/" target="_blank"><img src="resources/img/contact/icon_fb.png" alt=""></a>
                 </li>
+                <li><a href="http://localhost:8080/web/login" target="_blank"><img src="resources/img/contact/icon_bg.png" alt=""></a>
+                </li>
               </ul>
               <div class="contact-other">xxxxxx@gmail.com</div>
             </div>
